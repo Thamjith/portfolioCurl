@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#
+# Print the colorized YSAP logo and metadata
+#
+# Author: Thamjith Thaha <jithuthaha8@gmail.com>
+# Date: December 02, 2024
+# License: MIT
+
+. ./colors || exit 1
+. ./util || exit 1
+
+mapfile -t logo < logo.txt
+
+description=(
+	""
+	"${RST_COLOR}This is a very simple website of mine."
+	"${RST_COLOR}An intresting feature of this site is,"
+	"${RST_COLOR}You can curl it like ${GREEN_COLOR} curl https://thamjiththaha.com${RST_COLOR} on terminal"
+	''
+	"${RST_COLOR}Github: ${BLUE_COLOR}https://github.com/Thamjith${RST_COLOR}"
+	"${RST_COLOR}Linkedin: ${BLUE_COLOR}https://www.linkedin.com/in/thamjith-thaha/${RST_COLOR}"
+	"${RST_COLOR}Resume: ${BLUE_COLOR}https://thamjiththaha.com/resume/thamjiththaha.pdf${RST_COLOR}"
+)
+
+len=${#logo[@]}
+
+for ((i = 0; i < len; i++)); do
+	logo_line=${logo[i]}
+	desc_line=${description[i]}
+
+	echo -e "${BOLD_COLOR}$logo_line${RST_COLOR} $desc_line"
+done
